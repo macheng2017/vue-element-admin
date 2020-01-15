@@ -61,7 +61,20 @@ export const asyncRoutes = [
   {
     path: '/book',
     component: Layout,
-    meta: { title: '图书管理', icon: 'documentation' }
+    // 访问/book会被重定向到/book/create
+    redirect: '/book/create',
+    // 配置了元信息就可以在导航上显示出来
+    meta: {
+      title: '图书管理',
+      icon: 'documentation',
+      roles: ['admin']
+    },
+    // 配置嵌套路由,create组件会在Layout组件内定义的router-view显示出来
+    children: [{
+      path: '/book/create',
+      component: () => import('@/views/book/create'),
+      meta: { title: '上传文档', icon: 'edit', roles: ['admin'] }
+    }]
   },
   // 404 page must be placed at the end !!!
   { path: '*', redirect: '/404', hidden: true }

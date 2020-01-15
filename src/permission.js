@@ -9,7 +9,8 @@ import getPageTitle from '@/utils/get-page-title'
 NProgress.configure({ showSpinner: false }) // NProgress Configuration
 
 const whiteList = ['/login', '/auth-redirect'] // no redirect whitelist
-
+// 路由的全局守卫,所有的路由都会经过该方法
+// [导航守卫 | Vue Router](https://router.vuejs.org/zh/guide/advanced/navigation-guards.html#%E5%85%A8%E5%B1%80%E5%89%8D%E7%BD%AE%E5%AE%88%E5%8D%AB)
 router.beforeEach(async(to, from, next) => {
   // start progress bar
   NProgress.start()
